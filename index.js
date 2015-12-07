@@ -52,7 +52,9 @@ var AddPaging = ComposedComponent => class extends React.Component {
       var sendEvent = false
       for (key in nextState) {
         if (nextState.hasOwnProperty(key)) {
-          if (this.state[key] !== nextState[key]) {
+          var a = this.state[key]
+          var b = nextState[key]
+          if (a !== b && ! (Number.isNaN(a) && Number.isNaN(b))) {
             sendEvent = true
           }
         }
