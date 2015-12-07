@@ -13,16 +13,8 @@ This component is currently very useful, but needs a bit of additional work to e
 
 ## Installation
 
-Once tested a bit more, this will be published to npm:
-
 ```bash
 $ npm install react-native-paged-scroll-view
-```
-
-In the mean time, add to package.json:
-
-```javascript
-"react-native-paged-scroll-view": "git://github.com/rreusser/react-native-paged-scroll-view.git",
 ```
 
 ## Example
