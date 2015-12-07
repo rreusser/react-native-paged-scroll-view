@@ -11,6 +11,10 @@
     "react",
     "scrollview"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rreusser/react-native-paged-scroll-view.git"
+  },
   "author": "Ricky Reusser",
   "license": "MIT"
 }
