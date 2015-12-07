@@ -4,7 +4,7 @@ import React from 'react-native'
 
 var AddPaging = ComposedComponent => class extends React.Component {
 
-  constructor () {
+  constructor (props) {
     super(props)
 
     // Important to remember these, but they're not really 'state' variables:
