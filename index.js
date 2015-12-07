@@ -134,7 +134,7 @@ var AddPaging = ComposedComponent => class extends React.Component {
   render () {
     return (
       <ComposedComponent
-        scrollEventThrottle={this.props.scrollEventThrottle || 50}
+        scrollEventThrottle={this.props.scrollEventThrottle || 16}
         {...this.props}
         innerRef={this.getInnerRef.bind(this)}
         onScroll={this.handleScroll.bind(this)}
