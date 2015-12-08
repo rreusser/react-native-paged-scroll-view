@@ -9,6 +9,7 @@ var {
   View,
   ScrollView,
   SwitchIOS,
+  TouchableOpacity,
 } = React;
 
 import Device from './device'
@@ -58,6 +59,20 @@ var PagedScrollViewExample = React.createClass({
             value={this.state.horizontal}
           />
         </View>
+        <View style={styles.field}>
+          <TouchableOpacity onPress={() => {this._scrollView.scrollToPage(
+            this.state.currentHorizontalPage - (this.state.horizontal ? 1 : 0),
+            this.state.currentVerticalPage - (this.state.horizontal ? 0 : 1)
+          )}}>
+            <Text style={styles.paginationText}>Prev  </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {this._scrollView.scrollToPage(
+            this.state.currentHorizontalPage + (this.state.horizontal ? 1 : 0),
+            this.state.currentVerticalPage + (this.state.horizontal ? 0 : 1)
+          )}}>
+            <Text style={styles.paginationText}>  Next</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   },
@@ -69,6 +84,7 @@ var PagedScrollViewExample = React.createClass({
     return (
       <View style={styles.container}>
         <PagedScrollView
+          ref={(c) => {this._scrollView = c}}
           horizontal={this.state.horizontal}
           pagingEnabled={true}
           onPageChange={this.handlePageChange}

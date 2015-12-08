@@ -83,6 +83,13 @@ var AddPaging = ComposedComponent => class extends React.Component {
     })
   }
 
+  scrollToPage (horizontalPage, verticalPage) {
+    this._scrollView.scrollTo(
+      (Math.min(this.state.totalVerticalPages, Math.max(1, verticalPage)) - 1) * this.scrollViewHeight,
+      (Math.min(this.state.totalHorizontalPages, Math.max(1, horizontalPage)) - 1) * this.scrollViewWidth
+    )
+  }
+
   componentDidMount () {
     setTimeout(() => {
       var succeededCbs = 0
