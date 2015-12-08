@@ -50,11 +50,11 @@ var AddPaging = ComposedComponent => class extends React.Component {
   componentWillUpdate (nextProps, nextState) {
     if (this.props.onPageChange) {
       var sendEvent = false
-      for (key in nextState) {
+      for (var key in nextState) {
         if (nextState.hasOwnProperty(key)) {
           var a = this.state[key]
           var b = nextState[key]
-          if (a !== b && ! (Number.isNaN(a) && Number.isNaN(b))) {
+          if (a !== b && ! Number.isNaN(b)) {
             sendEvent = true
           }
         }
@@ -66,6 +66,7 @@ var AddPaging = ComposedComponent => class extends React.Component {
   }
 
   measureScrollView (cb) {
+    if (!this._scrollView) return
     this._scrollView.refs.ScrollView.measure((x,y,w,h) => {
       this.scrollViewWidth = w
       this.scrollViewHeight = h
@@ -74,6 +75,7 @@ var AddPaging = ComposedComponent => class extends React.Component {
   }
 
   measureInnerScrollView (cb) {
+    if (!this._scrollView) return
     this._scrollView.refs.InnerScrollView.measure((x,y,w,h) => {
       this.innerScrollViewWidth = w
       this.innerScrollViewHeight = h
@@ -101,21 +103,17 @@ var AddPaging = ComposedComponent => class extends React.Component {
 
       // Trigger both measurements at the same time and compute the new state only
       // once they've both returned.
-      this.measureInnerScrollView(computeNewState.bind(this))
-      this.measureScrollView(computeNewState.bind(this))
+      this.measureInnerScrollView(computeNewState)
+      this.measureScrollView(computeNewState)
     })
   }
 
-  handleContentSizeChange (event) {
-    this.props.onContentSizeChange && this.props.onContentSizeChange(event)
-
-    var e = event.nativeEvent
+  handleContentSizeChange (width, height) {
+    this.props.onContentSizeChange && this.props.onContentSizeChange(width, height)
 
     // Get values from event:
-    this.scrollViewWidth = e.layoutMeasurement.width
-    this.scrollViewHeight = e.layoutMeasurement.height
-    this.innerScrollViewWidth = e.contentSize.width
-    this.innerScrollViewHeight = e.contentSize.height
+    this.innerScrollViewWidth = width
+    this.innerScrollViewHeight = height
 
     var totalHorizontalPages = Math.floor(this.innerScrollViewWidth / this.scrollViewWidth + 0.5)
     var totalVerticalPages   = Math.floor(this.innerScrollViewHeight / this.scrollViewHeight + 0.5)
@@ -138,7 +136,7 @@ var AddPaging = ComposedComponent => class extends React.Component {
       <ComposedComponent
         scrollEventThrottle={this.props.scrollEventThrottle || 16}
         {...this.props}
-        innerRef={this.getInnerRef.bind(this)}
+        ref={this.getInnerRef.bind(this)}
         onScroll={this.handleScroll.bind(this)}
         onContentSizeChange={this.handleContentSizeChange.bind(this)}
       >

@@ -6,11 +6,6 @@
 
 This module implements a [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) that computes the current and total pages contained in a React Native [ScrollView](https://facebook.github.io/react-native/docs/scrollview.html) (or functionally similar) component. So it's really very simple but attempts to solve layout race conditions, re-layout and other subtleties. This component could trivially be used as a swiper alongside a page indicator but does not implement that itself.
 
-
-## Notes
-
-This component is currently very useful, but needs a bit of additional work to ensure it's not triggering unnecessary state changes and that there are no race conditions.
-
 ## Installation
 
 ```bash
@@ -18,6 +13,8 @@ $ npm install react-native-paged-scroll-view
 ```
 
 ## Example
+
+![PagedScrollViewExample](./example.gif)
 
 ```javascript
 import { ScrollView } from 'react-native'
