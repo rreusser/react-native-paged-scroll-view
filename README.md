@@ -6,16 +6,6 @@
 
 This module implements a [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) that computes the current and total pages contained in a React Native [ScrollView](https://facebook.github.io/react-native/docs/scrollview.html) (or functionally similar) component. So it's really very simple but attempts to solve layout race conditions, re-layout and other subtleties. This component could trivially be used as a swiper alongside a page indicator but does not implement that itself.
 
-## Note on compatibility
-
-It appears that [`onContentSizeChange`](http://facebook.github.io/react-native/docs/scrollview.html#oncontentsizechange) may be new as of RN 0.16. (See: [source](https://github.com/facebook/react-native/blob/38db6fa4658e8074a91f2c541bee3d00fe3ea50a/Libraries/Components/ScrollView/ScrollView.js#L368)) I believe it's just a convenience method, but I haven't implemented backwards-compatibility. Without this, the component won't automatically update if its content changes.
-
-## Installation
-
-```bash
-$ npm install react-native-paged-scroll-view
-```
-
 ## Example
 
 ![PagedScrollViewExample](./example.gif)
@@ -52,6 +42,15 @@ var PagedScrollView = AddPaging(ScrollView)
   ...
 ```
 
+## Note on compatibility
+
+It appears that [`onContentSizeChange`](http://facebook.github.io/react-native/docs/scrollview.html#oncontentsizechange) may be new as of RN 0.16. (See: [source](https://github.com/facebook/react-native/blob/38db6fa4658e8074a91f2c541bee3d00fe3ea50a/Libraries/Components/ScrollView/ScrollView.js#L368)) I believe it's just a convenience method, but I haven't implemented backwards-compatibility. Without this, the component won't automatically update if its content changes.
+
+## Installation
+
+```bash
+$ npm install react-native-paged-scroll-view
+```
 
 ## Usage
 
