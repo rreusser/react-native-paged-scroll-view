@@ -19,24 +19,15 @@ var PagedScrollView = AddPaging(ScrollView)
 
   ...
   handlePageChange (state) {
-    // Triggered on layout or when the page state changes:
     console.log('current horizontal page:', state.currentHorizontalPage)
     console.log('current vertical page:  ', state.currentVerticalPage)
     console.log('total horizontal pages: ', state.totalHorizontalPages)
     console.log('total vertical pages:   ', state.totalVerticalPages)
   }
 
-  anotherMethod () {
-    // Can also query imperatively via ref:
-    this.refs.PagedScrollView.state.currentHorizontalPage
-  }
-
   render () {
     return (
-      <PagedScrollView
-        ref="PagedScrollView"
-        onPageChange={this.handlePageChange.bind(this)}
-      >
+      <PagedScrollView onPageChange={this.handlePageChange.bind(this)}>
         ...
       </PagedScrollView>
     )
