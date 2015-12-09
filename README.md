@@ -59,7 +59,7 @@ Wrap either a `ScrollView` or a component functionally equivalent (implements `o
 
 **Arguments**:
 - `Component`: The component being wrapped. It must implement the basic methods of a ScrollView.
-- `scrollViewRefPropName`: the name of the property passed to `Component` that will return the ref. This exists in case you have a wrapped `ScrollView` component for which `ref` returns the ref to the wrapper instead of the ref to the `ScrollView`. If you provide this property, then your wrapped `ScrollView` should have a property `ref={this.props.<scrollViewRefPropName>} ` with your method name inserted. If you're just using a `ScrollView` though, you should be fine. Suggestions on how to improve this are welcome.
+- `scrollViewRefPropName`: the name of the property passed to `Component` that will return the ref. This exists in case you're using a wrapped a `ScrollView` component for which `ref` returns the ref of the wrapper instead of the ref of the `ScrollView`. If you provide this property, then your wrapped `ScrollView` should have a property `ref={this.props.<scrollViewRefPropName>} ` with your method name inserted. If you're just using a `ScrollView` though, you should be fine. Suggestions on how to improve this are welcome.
 
 **Props**:
 - `onPageChange`: `function(state)`: Executed on initial layout, when the page changes, or when the inner content changes. Callback is passed `state` object containing:
