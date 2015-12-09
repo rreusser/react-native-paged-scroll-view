@@ -56,6 +56,7 @@ $ npm install react-native-paged-scroll-view
 
 ##### `require('react-native-paged-scroll-view')(Component, [scrollViewRefPropName="ref"])`
 Wrap either a `ScrollView` or a component functionally equivalent (implements `onScroll` and similar basic methods). Returns a higher order component with props passed through.
+
 **Arguments**:
 - `Component`: The component being wrapped. It must implement the basic methods of a ScrollView.
 - `scrollViewRefPropName`: the name of the property passed to `Component` that will return the ref. If you've wrapped a `ScrollView`, you'll run into trouble since `ref` returns the outer component, not the actual scrollView. Suggestions for improvements welcome.
