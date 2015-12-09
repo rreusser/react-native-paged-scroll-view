@@ -100,12 +100,17 @@ var AddPaging = ComposedComponent => class extends React.Component {
   }
 
   scrollToPage = (horizontalPage, verticalPage) => {
-    console.log('scroll to:',
-      (Math.min(this.state.totalVerticalPages, Math.max(1, verticalPage)) - 1) * this.scrollViewHeight,
-      (Math.min(this.state.totalHorizontalPages, Math.max(1, horizontalPage)) - 1) * this.scrollViewWidth
-    )
     if (this._scrollView) {
       this._scrollView.scrollTo(
+        (Math.min(this.state.totalVerticalPages, Math.max(1, verticalPage)) - 1) * this.scrollViewHeight,
+        (Math.min(this.state.totalHorizontalPages, Math.max(1, horizontalPage)) - 1) * this.scrollViewWidth
+      )
+    }
+  }
+
+  scrollWithoutAnimationToPage = (horizontalPage, verticalPage) => {
+    if (this._scrollView) {
+      this._scrollView.scrollWithoutAnimationTo(
         (Math.min(this.state.totalVerticalPages, Math.max(1, verticalPage)) - 1) * this.scrollViewHeight,
         (Math.min(this.state.totalHorizontalPages, Math.max(1, horizontalPage)) - 1) * this.scrollViewWidth
       )

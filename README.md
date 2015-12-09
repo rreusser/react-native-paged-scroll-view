@@ -70,6 +70,10 @@ The above props may be accesed on `ref.state.*` in addition to:
 - `ref.scrollX`: current horizontal scroll offset
 - `ref.scrollY`: current vertical scroll offset
 
+**Methods**:
+- `ref.scrollToPage(horizontal, vertical)`: Scroll to a specific page
+- `ref.scrollWithoutAnimationToPage(horizontal, vertical)`: Jump immediately to a specific page
+
 
 # License
 (c) 2015 Ricky Reusser. MIT License.
