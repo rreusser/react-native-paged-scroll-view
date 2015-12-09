@@ -66,9 +66,12 @@ Wrap either a `ScrollView` or a component functionally equivalent (implements `o
 - `onInitialization`: `function(ref)`: Executed once, when the component is initially mounted and only once the dimensions have been measured. Useful, for example, for scrolling to a specific page once the component is mounted.
 
 **Attributes**:
-The above props may be accesed on `ref.state.*` in addition to:
 - `ref.scrollX`: current horizontal scroll offset
 - `ref.scrollY`: current vertical scroll offset
+- `ref.state.currentHorizontalPage`: as defined above
+- `ref.state.currentVerticalPage`: as defined above
+- `ref.state.totalHorizontalPages`: as defined above
+- `ref.state.totalVerticalPages`: as defined above
 
 **Methods**:
 - `ref.scrollToPage(horizontal, vertical)`: Scroll to a specific page
