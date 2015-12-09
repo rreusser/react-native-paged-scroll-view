@@ -63,6 +63,7 @@ Wrap either a `ScrollView` or a component functionally equivalent (implements `o
   - `totalVerticalPages`: total number of vertical pages, rounded to the nearest integer.
   - `currentHorizontalPage`: the current horizontal page, rounded to the nearest integer.
   - `currentVerticalPage`: the current vertical page, rounded to the nearest integer.
+- `onInitialization`: `function(ref)`: Executed once, when the component is initially mounted and only once the dimensions have been measured. Useful, for example, for scrolling to a specific page once the component is mounted.
 
 **Attributes**:
 The above props may be accesed on `ref.state.*` in addition to:

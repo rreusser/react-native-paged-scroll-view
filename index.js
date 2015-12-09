@@ -2,6 +2,10 @@
 
 import React from 'react-native'
 
+function isPresent (datum) {
+  return datum !== undefined && ! Number.isNaN(datum)
+}
+
 var AddPaging = ComposedComponent => class extends React.Component {
 
   constructor (props) {
@@ -10,6 +14,7 @@ var AddPaging = ComposedComponent => class extends React.Component {
     // Important to remember these, but they're not really 'state' variables:
     this.scrollX = 0
     this.scrollY = 0
+    this.initialized = false
 
     // We'll consider these state variables although maybe we shouldn't:
     this.state = {
@@ -17,6 +22,17 @@ var AddPaging = ComposedComponent => class extends React.Component {
       totalVerticalPages: 0,
       currentHorizontalPage: null,
       currentVerticalPage: null,
+    }
+  }
+
+  initialize () {
+    if (this.initialized) return
+    if (isPresent(this.state.totalHorizontalPages) &&
+        isPresent(this.state.totalVerticalPages) &&
+        isPresent(this.state.currentHorizontalPage) &&
+        isPresent(this.state.currentVerticalPage)) {
+      this.initialized = true
+      this.props.onInitialization && this.props.onInitialization(this)
     }
   }
 
@@ -66,7 +82,7 @@ var AddPaging = ComposedComponent => class extends React.Component {
   }
 
   measureScrollView (cb) {
-    if (!this._scrollView) return
+    if (!this._scrollView || ! this._scrollView.refs.ScrollView) return
     this._scrollView.refs.ScrollView.measure((x,y,w,h) => {
       this.scrollViewWidth = w
       this.scrollViewHeight = h
@@ -75,7 +91,7 @@ var AddPaging = ComposedComponent => class extends React.Component {
   }
 
   measureInnerScrollView (cb) {
-    if (!this._scrollView) return
+    if (!this._scrollView || !this._scrollView.refs.InnerScrollView) return
     this._scrollView.refs.InnerScrollView.measure((x,y,w,h) => {
       this.innerScrollViewWidth = w
       this.innerScrollViewHeight = h
@@ -83,11 +99,17 @@ var AddPaging = ComposedComponent => class extends React.Component {
     })
   }
 
-  scrollToPage (horizontalPage, verticalPage) {
-    this._scrollView.scrollTo(
+  scrollToPage = (horizontalPage, verticalPage) => {
+    console.log('scroll to:',
       (Math.min(this.state.totalVerticalPages, Math.max(1, verticalPage)) - 1) * this.scrollViewHeight,
       (Math.min(this.state.totalHorizontalPages, Math.max(1, horizontalPage)) - 1) * this.scrollViewWidth
     )
+    if (this._scrollView) {
+      this._scrollView.scrollTo(
+        (Math.min(this.state.totalVerticalPages, Math.max(1, verticalPage)) - 1) * this.scrollViewHeight,
+        (Math.min(this.state.totalHorizontalPages, Math.max(1, horizontalPage)) - 1) * this.scrollViewWidth
+      )
+    }
   }
 
   componentDidMount () {
@@ -97,8 +119,8 @@ var AddPaging = ComposedComponent => class extends React.Component {
 
       var computeNewState = () => {
         if (++succeededCbs < totalCbs) return
-        var totalHorizontalPages = Math.floor(this.innerScrollViewWidth / this.scrollViewWidth + 0.5)
-        var totalVerticalPages   = Math.floor(this.innerScrollViewHeight / this.scrollViewHeight + 0.5)
+        var totalHorizontalPages = Math.max(1, Math.floor(this.innerScrollViewWidth / this.scrollViewWidth + 0.5))
+        var totalVerticalPages   = Math.max(1, Math.floor(this.innerScrollViewHeight / this.scrollViewHeight + 0.5))
 
         this.setState({
           totalHorizontalPages:  totalHorizontalPages,
@@ -106,6 +128,8 @@ var AddPaging = ComposedComponent => class extends React.Component {
           currentHorizontalPage: Math.min(Math.max(Math.floor(this.scrollX / this.scrollViewWidth + 0.5) + 1, 0), totalHorizontalPages),
           currentVerticalPage:   Math.min(Math.max(Math.floor(this.scrollY / this.scrollViewHeight + 0.5) + 1, 0), totalVerticalPages)
         })
+
+        this.initialize()
       }
 
       // Trigger both measurements at the same time and compute the new state only
@@ -122,8 +146,8 @@ var AddPaging = ComposedComponent => class extends React.Component {
     this.innerScrollViewWidth = width
     this.innerScrollViewHeight = height
 
-    var totalHorizontalPages = Math.floor(this.innerScrollViewWidth / this.scrollViewWidth + 0.5)
-    var totalVerticalPages   = Math.floor(this.innerScrollViewHeight / this.scrollViewHeight + 0.5)
+    var totalHorizontalPages = Math.max(1, Math.floor(this.innerScrollViewWidth / this.scrollViewWidth + 0.5))
+    var totalVerticalPages   = Math.max(1, Math.floor(this.innerScrollViewHeight / this.scrollViewHeight + 0.5))
 
     this.setState({
       totalHorizontalPages:  totalHorizontalPages,
@@ -131,11 +155,13 @@ var AddPaging = ComposedComponent => class extends React.Component {
       currentHorizontalPage: Math.min(Math.max(Math.floor(this.scrollX / this.scrollViewWidth + 0.5) + 1, 0), totalHorizontalPages),
       currentVerticalPage:   Math.min(Math.max(Math.floor(this.scrollY / this.scrollViewHeight + 0.5) + 1, 0), totalVerticalPages)
     })
+
+    this.initialize()
   }
 
   getInnerRef (c) {
     this.props.innerRef && this.props.innerRef(c)
-    this._scrollView = c
+    if (c) this._scrollView = c
   }
 
   render () {
