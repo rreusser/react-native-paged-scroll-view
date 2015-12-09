@@ -1,5 +1,7 @@
 # react-native-paged-scroll-view
 
+[![npm version](https://badge.fury.io/js/react-native-paged-scroll-view.svg)](https://badge.fury.io/js/react-native-paged-scroll-view)
+
 > A higher-order React Native component to compute the current and total pages of a ScrollView-compatible component
 
 ## Introduction
