@@ -6,10 +6,13 @@ function isPresent (datum) {
   return datum !== undefined && ! Number.isNaN(datum)
 }
 
-var AddPaging = ComposedComponent => class extends React.Component {
+var AddPaging = (ComposedComponent, scrollViewRefPropName) => class extends React.Component {
 
   constructor (props) {
     super(props)
+
+    this.refProp = {}
+    this.refProp[scrollViewRefPropName || 'ref'] = this.getScrollViewRef.bind(this)
 
     // Important to remember these, but they're not really 'state' variables:
     this.scrollX = 0
@@ -164,9 +167,8 @@ var AddPaging = ComposedComponent => class extends React.Component {
     this.initialize()
   }
 
-  getInnerRef (c) {
-    this.props.innerRef && this.props.innerRef(c)
-    if (c) this._scrollView = c
+  getScrollViewRef (c) {
+    this._scrollView = c
   }
 
   render () {
@@ -174,7 +176,7 @@ var AddPaging = ComposedComponent => class extends React.Component {
       <ComposedComponent
         scrollEventThrottle={this.props.scrollEventThrottle || 16}
         {...this.props}
-        ref={this.getInnerRef.bind(this)}
+        {...this.refProp}
         onScroll={this.handleScroll.bind(this)}
         onContentSizeChange={this.handleContentSizeChange.bind(this)}
       >

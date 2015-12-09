@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This module implements a [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) that computes the current and total pages contained in a React Native [ScrollView](https://facebook.github.io/react-native/docs/scrollview.html) (or functionally similar) component. So it's really very simple but attempts to solve layout race conditions, re-layout and other subtleties. This component could trivially be used as a swiper alongside a page indicator but does not implement that itself.
+This module implements a [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) that computes the current and total pages contained in a React Native [ScrollView](https://facebook.github.io/react-native/docs/scrollview.html) (or functionally similar) component. So it's really very simple. Seriously, when you get down to it it's like a division and a floor function. But it attempts to solve layout race conditions, re-layout and other subtleties. This component could trivially be used as a swiper alongside a page indicator but does not implement that itself.
 
 ## Example
 
@@ -54,8 +54,11 @@ $ npm install react-native-paged-scroll-view
 
 ## Usage
 
-#### `require('react-native-paged-scroll-view')(Component)`
+#### `require('react-native-paged-scroll-view')(Component, [scrollViewRefPropName="ref"])`
 Wrap either a `ScrollView` or a component functionally equivalent (implements `onScroll` and similar basic methods). Returns a higher order component with props passed through.
+**Arguments**:
+- `Component`: The component being wrapped. It must implement the basic methods of a ScrollView.
+- `scrollViewRefPropName`: the name of the property passed to `Component` that will return the ref. If you've wrapped a `ScrollView`, you'll run into trouble since `ref` returns the outer component, not the actually scrollView. Suggestions for improvements welcome.
 
 **Props**:
 - `onPageChange`: `function(state)`: Executed on initial layout, when the page changes, or when the inner content changes. Callback is passed `state` object containing:
