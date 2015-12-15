@@ -8,6 +8,8 @@
 
 This module implements a [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) that computes the current and total pages contained in a React Native [ScrollView](https://facebook.github.io/react-native/docs/scrollview.html) (or functionally similar) component. So it's really very simple. Seriously, when you get down to it it's like a division and a floor function. But it attempts to solve layout race conditions, re-layout and other subtleties. This component could trivially be used as a swiper alongside a page indicator but does not implement that itself.
 
+To be clear, this is strictly just a page-computing component. I assume you'll use it with [`pagingEnabled={true}`](https://facebook.github.io/react-native/docs/scrollview.html#pagingenabled), and it doesn't add paged scrolling for Android.
+
 ## Example
 
 ![PagedScrollViewExample](./example.gif)
@@ -19,24 +21,15 @@ var PagedScrollView = AddPaging(ScrollView)
 
   ...
   handlePageChange (state) {
-    // Triggered on layout or when the page state changes:
     console.log('current horizontal page:', state.currentHorizontalPage)
     console.log('current vertical page:  ', state.currentVerticalPage)
     console.log('total horizontal pages: ', state.totalHorizontalPages)
     console.log('total vertical pages:   ', state.totalVerticalPages)
   }
 
-  anotherMethod () {
-    // Can also query imperatively via ref:
-    this.refs.PagedScrollView.state.currentHorizontalPage
-  }
-
   render () {
     return (
-      <PagedScrollView
-        ref="PagedScrollView"
-        onPageChange={this.handlePageChange.bind(this)}
-      >
+      <PagedScrollView onPageChange={this.handlePageChange.bind(this)}>
         ...
       </PagedScrollView>
     )
