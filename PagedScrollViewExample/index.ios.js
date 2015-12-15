@@ -13,7 +13,7 @@ var {
 } = React;
 
 import Device from './device'
-import AddPaging from 'react-native-paged-scroll-view'
+import AddPaging from './import-the-damned-paging' // Srsly? Can't require '../'???
 var PagedScrollView = AddPaging(ScrollView)
 const slideColors = ['#678', '#786', '#867']
 

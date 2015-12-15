@@ -6,7 +6,6 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "react-native": "^0.16.0",
-    "react-native-paged-scroll-view": "file:../"
+    "react-native": "^0.15.0"
   }
 }
