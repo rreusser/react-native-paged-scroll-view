@@ -2,6 +2,12 @@
 
 import React from 'react-native'
 
+//Polyfill for Number.isNaN on Safari
+//see https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN
+Number.isNaN = Number.isNaN || function(value) {
+    return typeof value === "number" && isNaN(value);
+}
+
 function isPresent (datum) {
   return datum !== undefined && ! Number.isNaN(datum)
 }
