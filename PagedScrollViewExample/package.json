@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start"
+    "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "react-native": "^0.15.0"
+    "react": "^0.14.8",
+    "react-native": "^0.22.2"
   }
 }

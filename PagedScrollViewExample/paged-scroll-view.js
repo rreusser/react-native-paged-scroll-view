@@ -2,6 +2,12 @@
 
 import React from 'react-native'
 
+//Polyfill for Number.isNaN on Safari
+//see https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN
+Number.isNaN = Number.isNaN || function(value) {
+    return typeof value === "number" && isNaN(value);
+}
+
 function isPresent (datum) {
   return datum !== undefined && ! Number.isNaN(datum)
 }
@@ -104,10 +110,11 @@ var AddPaging = (ComposedComponent, scrollViewRefPropName) => class extends Reac
 
   scrollToPage (horizontalPage, verticalPage) {
     if (this._scrollView) {
-      this._scrollView.scrollTo(
-        (Math.min(this.state.totalVerticalPages, Math.max(1, verticalPage)) - 1) * this.scrollViewHeight,
-        (Math.min(this.state.totalHorizontalPages, Math.max(1, horizontalPage)) - 1) * this.scrollViewWidth
-      )
+      this._scrollView.scrollTo({
+        x: (Math.min(this.state.totalHorizontalPages, Math.max(1, horizontalPage)) - 1) * this.scrollViewWidth,
+        y: (Math.min(this.state.totalVerticalPages, Math.max(1, verticalPage)) - 1) * this.scrollViewHeight,
+        animated: true,
+      })
     }
   }
 
