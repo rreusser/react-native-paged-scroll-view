@@ -1,8 +1,8 @@
 'use strict';
 
-var React = require('react-native');
+import React, { Component } from 'react';
 
-var {
+import {
   AppRegistry,
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ var {
   ScrollView,
   Switch,
   TouchableOpacity,
-} = React;
+} from 'react-native';
 
 import Device from './device'
 import AddPaging from './PagedScrollView'
