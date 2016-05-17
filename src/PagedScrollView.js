@@ -148,15 +148,7 @@ var AddPaging = (ComposedComponent, scrollViewRefPropName) => {
       );
     }
 
-    scrollToPage (horizontalPage, verticalPage) {
-      this._scrollToPage(horizontalPage, verticalPage, true);
-    }
-
-    scrollWithoutAnimationToPage (horizontalPage, verticalPage) {
-      this._scrollToPage(horizontalPage, verticalPage, false);
-    }
-
-    _scrollToPage (horizontalPage, verticalPage, animated) {
+    scrollToPage (horizontalPage, verticalPage, animated) {
       if (this._scrollView) {
         this._scrollView.scrollTo({
           x: (Math.min(this.state.totalHorizontalPages, Math.max(1, horizontalPage)) - 1) * this.scrollViewWidth,

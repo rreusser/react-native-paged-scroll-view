@@ -148,14 +148,6 @@ this.props.children));}},{key:'scrollToPage',value:function scrollToPage(
 
 
 
-horizontalPage,verticalPage){
-this._scrollToPage(horizontalPage,verticalPage,true);}},{key:'scrollWithoutAnimationToPage',value:function scrollWithoutAnimationToPage(
-
-
-horizontalPage,verticalPage){
-this._scrollToPage(horizontalPage,verticalPage,false);}},{key:'_scrollToPage',value:function _scrollToPage(
-
-
 horizontalPage,verticalPage,animated){
 if(this._scrollView){
 this._scrollView.scrollTo({

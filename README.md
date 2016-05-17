@@ -37,10 +37,6 @@ var PagedScrollView = AddPaging(ScrollView)
   ...
 ```
 
-## Note on compatibility
-
-It appears that [`onContentSizeChange`](http://facebook.github.io/react-native/docs/scrollview.html#oncontentsizechange) may be new as of RN 0.16. (See: [source](https://github.com/facebook/react-native/blob/38db6fa4658e8074a91f2c541bee3d00fe3ea50a/Libraries/Components/ScrollView/ScrollView.js#L368)) I believe it's just a convenience method, but I haven't implemented backwards-compatibility. Without this, the component won't automatically update if its content changes.
-
 ## Installation
 
 ```bash
@@ -73,9 +69,7 @@ Wrap either a `ScrollView` or a component functionally equivalent (implements `o
 - `ref.state.totalVerticalPages`: as defined above
 
 **Methods**:
-- `ref.scrollToPage(horizontal, vertical)`: Scroll to a specific page
-- `ref.scrollWithoutAnimationToPage(horizontal, vertical)`: Jump immediately to a specific page
-
+- `ref.scrollToPage(horizontal, vertical, animated)`: Scroll to a specific page
 
 # License
 (c) 2015 Ricky Reusser. MIT License.
