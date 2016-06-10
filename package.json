@@ -1,6 +1,6 @@
 {
   "name": "react-native-paged-scroll-view",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "A higher-order React Native component to compute the current and total pages of a ScrollView",
   "main": "./lib/PagedScrollView.js",
   "scripts": {
