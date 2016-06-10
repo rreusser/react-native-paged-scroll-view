@@ -4,6 +4,8 @@
 
 > A higher-order React Native component to compute the current and total pages of a ScrollView-compatible component
 
+**Note:** I've tried and will try to keep this mostly functional and current, but my job no longer involves working with React Native, so it's a little tough to really dig in and get to the bottom of tricky issues. I'll try to maintain this, but I won't be actively improving it. I'll gladly accept PRs though!
+
 ## Introduction
 
 This module implements a [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) that computes the current and total pages contained in a React Native [ScrollView](https://facebook.github.io/react-native/docs/scrollview.html) (or functionally similar) component. So it's really very simple. Seriously, when you get down to it it's like a division and a floor function. But it attempts to solve layout race conditions, re-layout and other subtleties. This component could trivially be used as a swiper alongside a page indicator but does not implement that itself.
