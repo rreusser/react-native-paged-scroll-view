@@ -1,6 +1,6 @@
 'use strict'
 
-import React from 'react-native'
+import React from 'react'
 
 //Polyfill for Number.isNaN on Safari
 //see https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN
