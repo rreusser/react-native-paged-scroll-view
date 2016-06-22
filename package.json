@@ -1,12 +1,12 @@
 {
   "name": "react-native-paged-scroll-view",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "A higher-order React Native component to compute the current and total pages of a ScrollView",
   "main": "./lib/PagedScrollView.js",
   "scripts": {
     "test": "semistandard src/PagedScrollView.js",
     "clean": "rimraf lib",
-    "build": "mkdir -p lib && babel src --out-dir lib",
+    "build": "mkdir -p lib && babel src --out-dir lib && cp lib/PagedScrollView.js PagedScrollViewExample/PagedScrollView.js",
     "prepublish": "npm run test && npm run clean && npm run build"
   },
   "keywords": [
