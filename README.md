@@ -4,7 +4,7 @@
 
 > A higher-order React Native component to compute the current and total pages of a ScrollView-compatible component
 
-**Note:** I've tried and will try to keep this mostly functional and current, but my job no longer involves working with React Native, so it's a little tough to really dig in and get to the bottom of tricky issues. I'll try to maintain this, but I won't be actively improving it. I'll gladly accept PRs though!
+**Note:** It sounds like there are a couple ugly bugs that have crept in. This was very useful for us at the time, but my job hasn't involved working with react native for nearly six months now, so it's difficult for me to find the time to debug. I'll gladly merge and publish pull requests as quickly as possible, but I won't be actively fixing bugs or maintaining. My apologies and best wishes!
 
 ## Introduction
 
